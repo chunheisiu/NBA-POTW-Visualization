@@ -10,5 +10,8 @@ https://www.kaggle.com/hultm28/nba-player-salary-data-2002-2017
 https://www.kaggle.com/whitefero/nba-player-salary-19902017
 https://data.world/datadavis/nba-salaries/workspace/file?filename=nba_salaries_1990_to_2018.csv
 
-- Supplemental Data (2018 - 2019)
+- Supplemental Data NBA Salary (2018 - 2019)
 https://web.archive.org/web/20181002194236/www.basketball-reference.com/contracts/players.html
+
+- Supplemental Data (NBA Teams Abbreviations)
+https://en.wikipedia.org/wiki/Wikipedia:WikiProject_National_Basketball_Association/National_Basketball_Association_team_abbreviations
