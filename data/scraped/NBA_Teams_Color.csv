@@ -1,32 +1,32 @@
-Franchise,Tm,Color1,Color2
-Atlanta Hawks,ATL,#E03A3E,#C1D32F
-Boston Celtics,BOS,#007A33,#BA9653
-Brooklyn Nets,BKN,#000000,#000000
-Charlotte Hornets,CHA,#1D1160,#00788C
-Chicago Bulls,CHI,#CE1141,#000000
-Cleveland Cavaliers,CLE,#6F263D,#FFB81C
-Dallas Mavericks,DAL,#00538C,#B8C4CA
-Denver Nuggets,DEN,#00285E,#FFC72C
-Detroit Pistons,DET,#ED174C,#006BB6
-Golden State Warriors,GSW,#006BB6,#FDB927
-Houston Rockets,HOU,#CE1141,#000000
-Indiana Pacers,IND,#002D62,#FDBB30
-Los Angeles Clippers,LAC,#ED174C,#006BB6
-Los Angeles Lakers,LAL,#552583,#FFC72C
-Memphis Grizzlies,MEM,#6189B9,#00285E
-Miami Heat,MIA,#98002E,#F9A01B
-Milwaukee Bucks,MIL,#00471B,#EEE1C6
-Minnesota Timberwolves,MIN,#0C2340,#236192
-New Orleans Pelicans,NOP,#002B5C,#E31837
-New York Knicks,NYK,#006BB6,#F58426
-Oklahoma City Thunder,OKC,#007AC1,#EF3B24
-Orlando Magic,ORL,#0057B8,#C2CCD2
-Philadelphia 76ers,PHI,#006BB6,#ED174C
-Phoenix Suns,PHX,#1D1160,#E56020
-Portland Trail Blazers,POR,#E03A3E,#000000
-Sacramento Kings,SAC,#5A2D81,#63727A
-San Antonio Spurs,SAS,#000000,#C4CED4
-Toronto Raptors,TOR,#CE1141,#000000
-Utah Jazz,UTA,#002B5C,#F9A01B
-Washington Wizards,WAS,#002B5C,#E31837
-Seattle SuperSonics,,#00653A,#FFC200
+,Franchise,Tm,Color1,Color2
+0,Atlanta Hawks,ATL,#E03A3E,#C1D32F
+1,Boston Celtics,BOS,#007A33,#BA9653
+2,Brooklyn Nets,BKN,#000000,#000000
+3,Charlotte Hornets,CHA,#1D1160,#00788C
+4,Chicago Bulls,CHI,#CE1141,#000000
+5,Cleveland Cavaliers,CLE,#6F263D,#FFB81C
+6,Dallas Mavericks,DAL,#00538C,#B8C4CA
+7,Denver Nuggets,DEN,#00285E,#FFC72C
+8,Detroit Pistons,DET,#ED174C,#006BB6
+9,Golden State Warriors,GSW,#006BB6,#FDB927
+10,Houston Rockets,HOU,#CE1141,#FFFFFF
+11,Indiana Pacers,IND,#002D62,#FDBB30
+12,Los Angeles Clippers,LAC,#ED174C,#006BB6
+13,Los Angeles Lakers,LAL,#552583,#FFC72C
+14,Memphis Grizzlies,MEM,#6189B9,#00285E
+15,Miami Heat,MIA,#98002E,#F9A01B
+16,Milwaukee Bucks,MIL,#00471B,#EEE1C6
+17,Minnesota Timberwolves,MIN,#0C2340,#236192
+18,New Orleans Pelicans,NOP,#002B5C,#E31837
+19,New York Knicks,NYK,#006BB6,#F58426
+20,Oklahoma City Thunder,OKC,#007AC1,#EF3B24
+21,Orlando Magic,ORL,#0057B8,#C2CCD2
+22,Philadelphia 76ers,PHI,#006BB6,#ED174C
+23,Phoenix Suns,PHX,#1D1160,#E56020
+24,Portland Trail Blazers,POR,#E03A3E,#000000
+25,Sacramento Kings,SAC,#5A2D81,#63727A
+26,San Antonio Spurs,SAS,#000000,#C4CED4
+27,Toronto Raptors,TOR,#CE1141,#000000
+28,Utah Jazz,UTA,#002B5C,#F9A01B
+29,Washington Wizards,WAS,#002B5C,#E31837
+30,Seattle SuperSonics,,#00653A,#FFC200
