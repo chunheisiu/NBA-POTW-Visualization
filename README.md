@@ -20,7 +20,7 @@ NBA is not a place we can always observe the magic power of teamwork, but a plac
 https://www.kaggle.com/jacobbaruch/nba-player-of-the-week
 
 - NBA Player Salary from basketball-reference.com (1990 - 2017)<br>
-https://www.kaggle.com/whitefero/nba-player-salary-19902017
+https://www.kaggle.com/whitefero/nba-player-salary-19902017<br>
 https://data.world/datadavis/nba-salaries/workspace/file?filename=nba_salaries_1990_to_2018.csv
 
 - NBA Player Salary from basketball-reference.com (2018 - 2019)<br>
