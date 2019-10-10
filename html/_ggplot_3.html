@@ -13450,7 +13450,7 @@ div#notebook {
     <span class="nf">paste</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="m">1</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">annotate_msg</span> <span class="o">&lt;-</span> <span class="s">&#39;The basketballs indicate that at least one\nnon-champion team has the largest number of\nPlayer of the Week for that season.&#39;</span>
+<span class="n">annotate_msg</span> <span class="o">&lt;-</span> <span class="s">&#39;The basketballs indicate that at least one\nnon-champion team has the most\nPlayer of the Week for that season.&#39;</span>
 
 <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
 <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp</span><span class="p">)</span> <span class="o">+</span>

@@ -13403,13 +13403,13 @@ memory usage: 582.0+ KB
 <span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Is_POTW</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">fontface</span> <span class="o">=</span> <span class="s">&#39;bold&#39;</span><span class="p">,</span>
           <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw1</span><span class="p">,</span> <span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Is_POTW</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5.5</span><span class="p">,</span> <span class="n">fontface</span> <span class="o">=</span> <span class="s">&#39;bold&#39;</span><span class="p">,</span>
-          <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw2</span><span class="p">,</span> <span class="n">vjust</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">-0.2</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
+          <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw2</span><span class="p">,</span> <span class="n">vjust</span> <span class="o">=</span> <span class="m">1.25</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">-0.2</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;grey2&quot;</span><span class="p">,</span> <span class="s">&quot;#FA8320&quot;</span><span class="p">))</span> <span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Is_POTW</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw1</span><span class="p">,</span>  <span class="n">position</span> <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Is_POTW</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw2</span><span class="p">,</span>  <span class="n">position</span> <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">2018.2</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">21</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Avg Salary\nof POTW&#39;</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;#FA8320&#39;</span><span class="p">,</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Is_POTW</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw1</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Is_POTW</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">annote_slr_potw2</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">2018.5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">20.75</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Avg Salary\nof POTW&#39;</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;#FA8320&#39;</span><span class="p">,</span>
           <span class="n">hjust</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">fontface</span> <span class="o">=</span> <span class="s">&#39;bold&#39;</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">2018.5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Avg Salary of\nNon-POTW&#39;</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;grey1&#39;</span><span class="p">,</span>
+<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">2018.5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">4.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Avg Salary of\nNon-POTW&#39;</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;grey1&#39;</span><span class="p">,</span>
           <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">fontface</span> <span class="o">=</span> <span class="s">&#39;bold&#39;</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;\nYear&quot;</span><span class="p">)</span> <span class="o">+</span> 
 <span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Salary ($ in Millions) \n&quot;</span><span class="p">)</span> <span class="o">+</span>
@@ -13423,48 +13423,6 @@ memory usage: 582.0+ KB
       <span class="n">panel.grid.minor</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">())</span> <span class="o">+</span>
 <span class="nf">guides</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
 <span class="nf">ggsave</span><span class="p">(</span><span class="s">&#39;../vis/vis2.png&#39;</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="m">8</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># %%R -w 12 -h 6 --units in -r 300</span>
-<span class="c1"># ggplot() +</span>
-<span class="c1"># geom_line(aes(x = Year, y = Salary, color = Is_POTW), data = slr_vs_count, alpha = 0.6, size = 1) +</span>
-<span class="c1"># theme_minimal(base_size = 17) +</span>
-<span class="c1"># # geom_line(aes(x = Year, y = Salary), data = slr_potw_median, stat = &quot;identity&quot;, color = &#39;green&#39;, size = 1, alpha = 0.6) +</span>
-<span class="c1"># geom_point(aes(x = Year, y = Salary, color = Is_POTW, size = Salary), data = annote_slr_potw,  position = &quot;dodge&quot;) +</span>
-<span class="c1"># geom_text(aes(x = Year, y = Salary, label = Salary), data = annote_slr_potw, vjust = -0.8, hjust = -0.2) +</span>
-<span class="c1"># xlab(&quot;\nYear&quot;) + </span>
-<span class="c1"># ylab(&quot;Salary ($ in Millions) \n&quot;) +</span>
-<span class="c1"># scale_x_continuous(limits = c(1990, 2020), breaks = seq(1990, 2020, by = 5)) +</span>
-<span class="c1"># scale_y_continuous(limits = c(0, 24), breaks = seq(0, 24, by = 2)) +</span>
-<span class="c1"># # scale_colour_gradient(low = &#39;snow2&#39;, high = &#39;steelblue&#39;) +</span>
-<span class="c1"># theme(text = element_text(family = &#39;Avenir Next&#39;),</span>
-<span class="c1">#       axis.title = element_text(face = &#39;bold&#39;),</span>
-<span class="c1">#       panel.grid.major = element_blank(),</span>
-<span class="c1">#       panel.grid.minor = element_blank()) +</span>
-<span class="c1"># guides(colour = F, size = F)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
