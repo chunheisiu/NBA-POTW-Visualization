@@ -1,8 +1,6 @@
-clear
-
-FILES_PATH=../notebooks
+FILES_PATH=$1
 FILES_FULL_PATH=$FILES_PATH/*.ipynb
-OUTPUT_PATH=../html
+OUTPUT_PATH=$2
 
 for f in $FILES_FULL_PATH
 do
