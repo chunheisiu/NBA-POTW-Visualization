@@ -13081,14 +13081,6 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note: This notebook requires <code>ggnewscale</code> which could be installed by running <code>devtools::install_github("eliocamp/ggnewscale")</code> in R</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -13096,7 +13088,6 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> rpy2.ipython
 <span class="o">%</span><span class="k">R</span> library(ggplot2)
-<span class="o">%</span><span class="k">R</span> library(ggnewscale)
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13365,7 +13356,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_champ</span> <span class="o">=</span> <span class="n">nba_df_potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">nba_df_potw</span><span class="o">.</span><span class="n">isChampion</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">]</span>
-<span class="n">nba_nonchamp</span> <span class="o">=</span> <span class="n">nba_df_potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">nba_df_potw</span><span class="o">.</span><span class="n">isChampion</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">)]</span>
+<span class="n">nba_nonchamp_maxpotw</span> <span class="o">=</span> <span class="n">nba_df_potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">nba_df_potw</span><span class="o">.</span><span class="n">isChampion</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nba_df_potw</span><span class="o">.</span><span class="n">isMaxPotw</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">)]</span>
+<span class="n">nba_nonchamp_nonpotw</span> <span class="o">=</span> <span class="n">nba_df_potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">nba_df_potw</span><span class="o">.</span><span class="n">isChampion</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nba_df_potw</span><span class="o">.</span><span class="n">isMaxPotw</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -13409,7 +13401,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">R</span> -i nba_champ
-<span class="o">%</span><span class="k">R</span> -i nba_nonchamp
+<span class="o">%</span><span class="k">R</span> -i nba_nonchamp_maxpotw
+<span class="o">%</span><span class="k">R</span> -i nba_nonchamp_nonpotw
 <span class="o">%</span><span class="k">R</span> -i nba_ggplot_color
 <span class="o">%</span><span class="k">R</span> -i nba_ggplot_fill
 </pre></div>
@@ -13440,18 +13433,12 @@ div#notebook {
 <span class="n">annotate_msg</span> <span class="o">&lt;-</span> <span class="s">&#39;The basketballs indicate that at least one\nnon-champion team has the most\nPlayer of the Week for that season.&#39;</span>
 
 <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">scale_size_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="p">))</span> <span class="o">+</span>
-<span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="s">&#39;#FA8320&#39;</span><span class="p">))</span> <span class="o">+</span>
-<span class="nf">new_scale_color</span><span class="p">()</span> <span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">new_scale</span><span class="p">(</span><span class="s">&#39;size&#39;</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;) (&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">isMaxPotw</span><span class="p">),</span>
-          <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp</span><span class="p">,</span> <span class="n">nudge_x</span> <span class="o">=</span> <span class="m">0.005</span><span class="p">,</span> <span class="n">nudge_y</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">scale_size_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">3.5</span><span class="p">))</span> <span class="o">+</span>
-<span class="nf">scale_shape_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span> <span class="o">+</span>
-<span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">))</span> <span class="o">+</span>
-<span class="nf">new_scale_color</span><span class="p">()</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;#FA8320&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;) (&#39;</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span>
+          <span class="n">size</span> <span class="o">=</span> <span class="m">3.5</span><span class="p">,</span> <span class="n">nudge_x</span> <span class="o">=</span> <span class="m">0.005</span><span class="p">,</span> <span class="n">nudge_y</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_nonpotw</span><span class="p">,</span>
+           <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;darkgray&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.25</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="s">&#39;jitter&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">geom_label</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Team</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">Team</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">Abb</span><span class="p">),</span>
            <span class="n">data</span> <span class="o">=</span> <span class="n">nba_champ</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">,</span> <span class="n">fontface</span> <span class="o">=</span> <span class="s">&#39;bold&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">annotate</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="m">1991</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">7.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">annotate_msg</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
