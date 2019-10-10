@@ -13368,7 +13368,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Add the Abbreviation for the champion team name</p>
+<p>Filter non-champion teams that has the same number of POTW as the champion team for the season</p>
 
 </div>
 </div>
@@ -13376,6 +13376,30 @@ div#notebook {
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_champ_potw</span> <span class="o">=</span> <span class="n">nba_champ</span><span class="p">[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Potw_Count&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">isSameMaxPotw</span> <span class="o">=</span> <span class="s1">&#39;Yes&#39;</span><span class="p">)</span>
+<span class="n">nba_nonchamp_potw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span> <span class="n">nba_champ_potw</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Potw_Count&#39;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">nba_nonchamp_potw</span><span class="o">.</span><span class="n">isSameMaxPotw</span> <span class="o">=</span> <span class="n">nba_nonchamp_potw</span><span class="o">.</span><span class="n">isSameMaxPotw</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">nba_nonchamp_potw</span><span class="o">.</span><span class="n">isSameMaxPotw</span><span class="p">)),</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span>
+<span class="n">nba_nonchamp_potw</span> <span class="o">=</span> <span class="n">nba_nonchamp_potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">nba_nonchamp_potw</span><span class="o">.</span><span class="n">isSameMaxPotw</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Add the Abbreviation for the champion team name</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_Abb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/scraped/NBA_Teams_Abb.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Franchise&#39;</span><span class="p">:</span> <span class="s1">&#39;Team&#39;</span><span class="p">})</span>
@@ -13397,11 +13421,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">R</span> -i nba_champ
-<span class="o">%</span><span class="k">R</span> -i nba_nonchamp_maxpotw
+<span class="o">%</span><span class="k">R</span> -i nba_nonchamp_potw
 <span class="o">%</span><span class="k">R</span> -i nba_nonchamp_nonpotw
 <span class="o">%</span><span class="k">R</span> -i nba_ggplot_color
 <span class="o">%</span><span class="k">R</span> -i nba_ggplot_fill
@@ -13422,7 +13446,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span> <span class="o">-</span><span class="n">w</span> <span class="m">12</span> <span class="o">-</span><span class="n">h</span> <span class="m">8</span> <span class="o">--</span><span class="n">units</span> <span class="n">in</span> <span class="o">-</span><span class="n">r</span> <span class="m">300</span>
@@ -13433,10 +13457,10 @@ div#notebook {
 <span class="n">annotate_msg</span> <span class="o">&lt;-</span> <span class="s">&#39;The basketballs indicate that at least one\nnon-champion team has the most\nPlayer of the Week for that season.&#39;</span>
 
 <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;#FA8320&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="o">+</span>
-<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;) (&#39;</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_maxpotw</span><span class="p">,</span>
-          <span class="n">size</span> <span class="o">=</span> <span class="m">3.5</span><span class="p">,</span> <span class="n">nudge_x</span> <span class="o">=</span> <span class="m">0.005</span><span class="p">,</span> <span class="n">nudge_y</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_potw</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;#FA8320&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">7.5</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_potw</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">7.5</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;) (&#39;</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_potw</span><span class="p">,</span>
+          <span class="n">size</span> <span class="o">=</span> <span class="m">5.4</span><span class="p">,</span> <span class="n">nudge_x</span> <span class="o">=</span> <span class="m">0.005</span><span class="p">,</span> <span class="n">nudge_y</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Avenir Next&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">nba_nonchamp_nonpotw</span><span class="p">,</span>
            <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;darkgray&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.25</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="s">&#39;jitter&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">geom_label</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Potw_Count</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Team</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">Team</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">Abb</span><span class="p">),</span>
