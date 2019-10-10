@@ -13184,6 +13184,9 @@ div#notebook {
 <span class="c1"># Manually change the Clipper&#39;s location to avoid the overlap of Clippers and Lakers, as they share the same arena.</span>
 <span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_new</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Los Angeles Clippers&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">34</span>
 <span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_new</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Los Angeles Clippers&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">117</span>
+<span class="c1"># Manually change the Net&#39;s location to avoid the overlap of Knicks and Nets</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_new</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Brooklyn Nets&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_new</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Brooklyn Nets&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">75</span>
 <span class="n">df_new</span>
 </pre></div>
 
@@ -13256,8 +13259,8 @@ div#notebook {
       <td>﻿40.68265°N 73.974689°W</td>
       <td>1967*</td>
       <td>1976</td>
-      <td>40.68265</td>
-      <td>-73.974689</td>
+      <td>41</td>
+      <td>-75</td>
     </tr>
     <tr>
       <td>2</td>
