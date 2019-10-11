@@ -12,7 +12,7 @@ There exists a common belief that one's performance and experience dictate one's
 On the other hand, we all say basketball is a team game but does that reflect reality in the world of the NBA? To answer that, we seek the relationship between the best players and the best team. If a team is made up of the best players, how likely is it for the team to win the championship? Can a team with no “dream" players still be the champion? Based on these findings, we could determine if and how the performance of a team with one best player compared to a team with a few better players.
 
 #### Big Idea
-NBA is not a place we can always observe the magic power of teamwork, but a place we can usually witness the talented, whose compensation also reflects their true value, lead the game.
+NBA is not only a place we can always observe the magic power of teamwork, but also a place we can usually witness the talented, whose compensation also reflects their true value, lead the game.
 
 ### Data Source
 #### Main Data
