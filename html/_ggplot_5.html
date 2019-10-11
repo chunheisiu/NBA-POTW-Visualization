@@ -13300,7 +13300,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">potw_count</span> <span class="o">=</span> <span class="n">potw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;Player&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">location_new</span> <span class="o">=</span> <span class="n">location_w_abb</span><span class="p">[[</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;Abb&#39;</span><span class="p">]]</span>
+<span class="n">location_new</span> <span class="o">=</span> <span class="n">location_w_abb</span><span class="p">[[</span><span class="s1">&#39;Division&#39;</span><span class="p">,</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;Abb&#39;</span><span class="p">]]</span>
 <span class="n">potw_count</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potw_count</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Philadelphia Sixers&#39;</span><span class="p">,</span> <span class="s1">&#39;Team&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Philadelphia 76ers&#39;</span>
 </pre></div>
 
@@ -13351,6 +13351,7 @@ div#notebook {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Division</th>
       <th>Team</th>
       <th>latitude</th>
       <th>longitude</th>
@@ -13361,6 +13362,7 @@ div#notebook {
   <tbody>
     <tr>
       <td>0</td>
+      <td>Atlantic</td>
       <td>Boston Celtics</td>
       <td>42.366303</td>
       <td>-71.062228</td>
@@ -13369,6 +13371,7 @@ div#notebook {
     </tr>
     <tr>
       <td>1</td>
+      <td>Atlantic</td>
       <td>Brooklyn Nets</td>
       <td>41.000000</td>
       <td>-75.000000</td>
@@ -13377,6 +13380,7 @@ div#notebook {
     </tr>
     <tr>
       <td>2</td>
+      <td>Atlantic</td>
       <td>New York Knicks</td>
       <td>40.750556</td>
       <td>-73.993611</td>
@@ -13385,6 +13389,7 @@ div#notebook {
     </tr>
     <tr>
       <td>3</td>
+      <td>Atlantic</td>
       <td>Philadelphia 76ers</td>
       <td>39.901111</td>
       <td>-75.171944</td>
@@ -13393,6 +13398,7 @@ div#notebook {
     </tr>
     <tr>
       <td>4</td>
+      <td>Atlantic</td>
       <td>Toronto Raptors</td>
       <td>43.643333</td>
       <td>-79.379167</td>
@@ -13468,6 +13474,7 @@ div#notebook {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Division</th>
       <th>Team</th>
       <th>latitude</th>
       <th>longitude</th>
@@ -13482,6 +13489,7 @@ div#notebook {
   <tbody>
     <tr>
       <td>0</td>
+      <td>Atlantic</td>
       <td>Boston Celtics</td>
       <td>42.366303</td>
       <td>-71.062228</td>
@@ -13494,6 +13502,7 @@ div#notebook {
     </tr>
     <tr>
       <td>1</td>
+      <td>Atlantic</td>
       <td>Brooklyn Nets</td>
       <td>41.000000</td>
       <td>-75.000000</td>
@@ -13506,6 +13515,7 @@ div#notebook {
     </tr>
     <tr>
       <td>2</td>
+      <td>Atlantic</td>
       <td>New York Knicks</td>
       <td>40.750556</td>
       <td>-73.993611</td>
@@ -13518,6 +13528,7 @@ div#notebook {
     </tr>
     <tr>
       <td>3</td>
+      <td>Atlantic</td>
       <td>Philadelphia 76ers</td>
       <td>39.901111</td>
       <td>-75.171944</td>
@@ -13530,6 +13541,7 @@ div#notebook {
     </tr>
     <tr>
       <td>4</td>
+      <td>Atlantic</td>
       <td>Toronto Raptors</td>
       <td>43.643333</td>
       <td>-79.379167</td>
@@ -13557,13 +13569,23 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">us</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">STATES</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;State&#39;</span><span class="p">})</span>
+<span class="n">states</span>
 <span class="n">region</span> <span class="o">=</span> <span class="n">location_w_abb</span><span class="o">.</span><span class="n">copy</span><span class="p">()[[</span><span class="s1">&#39;Division&#39;</span><span class="p">,</span> <span class="s1">&#39;City, State&#39;</span><span class="p">]]</span>
 <span class="n">region</span><span class="p">[</span><span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">region</span><span class="p">[</span><span class="s1">&#39;City, State&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 <span class="n">region</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">region</span><span class="o">.</span><span class="n">State</span> <span class="o">==</span> <span class="s1">&#39;d.c.&#39;</span><span class="p">,</span> <span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;district of columbia&#39;</span>
 <span class="n">region</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;City, State&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
 <span class="c1">#TODO: Assign color to each division and Join with states and fill na with gray</span>
-<span class="n">region</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">states</span><span class="p">,</span><span class="n">region</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;No_NBA&#39;</span><span class="p">)</span>
+<span class="n">color_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">color_lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gray90&quot;</span><span class="p">,</span><span class="s2">&quot;darkseagreen2&quot;</span><span class="p">,</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span><span class="s2">&quot;lightpink&quot;</span><span class="p">,</span><span class="s2">&quot;thistle2&quot;</span><span class="p">,</span><span class="s2">&quot;wheat&quot;</span><span class="p">,</span><span class="s2">&quot;tan1&quot;</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">location</span><span class="o">.</span><span class="n">Division</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">color_dic</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="n">location</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">location</span><span class="p">[</span><span class="s1">&#39;Division&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">color_dic</span><span class="p">)</span>
+<span class="n">location_color</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;State&#39;</span><span class="p">:</span> <span class="s1">&#39;region&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+<span class="n">location_color</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13576,171 +13598,19 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;alabama&#39; &#39;alaska&#39; &#39;arizona&#39; &#39;arkansas&#39; &#39;california&#39; &#39;colorado&#39;
- &#39;connecticut&#39; &#39;delaware&#39; &#39;district of columbia&#39; &#39;florida&#39; &#39;georgia&#39;
- &#39;hawaii&#39; &#39;idaho&#39; &#39;illinois&#39; &#39;indiana&#39; &#39;iowa&#39; &#39;kansas&#39; &#39;kentucky&#39;
- &#39;louisiana&#39; &#39;maine&#39; &#39;maryland&#39; &#39;massachusetts&#39; &#39;michigan&#39; &#39;minnesota&#39;
- &#39;mississippi&#39; &#39;missouri&#39; &#39;montana&#39; &#39;nebraska&#39; &#39;nevada&#39; &#39;new hampshire&#39;
- &#39;new jersey&#39; &#39;new mexico&#39; &#39;new york&#39; &#39;north carolina&#39; &#39;north dakota&#39;
- &#39;ohio&#39; &#39;oklahoma&#39; &#39;oregon&#39; &#39;pennsylvania&#39; &#39;rhode island&#39; &#39;south carolina&#39;
- &#39;south dakota&#39; &#39;tennessee&#39; &#39;texas&#39; &#39;utah&#39; &#39;vermont&#39; &#39;virginia&#39;
- &#39;washington&#39; &#39;west virginia&#39; &#39;wisconsin&#39; &#39;wyoming&#39;]
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
     <div class="prompt output_prompt">Out[9]:</div>
 
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Division</th>
-      <th>State</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>Atlantic</td>
-      <td>massachusetts</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Atlantic</td>
-      <td>new york</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Atlantic</td>
-      <td>pennsylvania</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Atlantic</td>
-      <td>ontario</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Central</td>
-      <td>illinois</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Central</td>
-      <td>ohio</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Central</td>
-      <td>michigan</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Central</td>
-      <td>indiana</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Central</td>
-      <td>wisconsin</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Southeast</td>
-      <td>georgia</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>Southeast</td>
-      <td>north carolina</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>Southeast</td>
-      <td>florida</td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td>Southeast</td>
-      <td>district of columbia</td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td>Northwest</td>
-      <td>colorado</td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td>Northwest</td>
-      <td>minnesota</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td>Northwest</td>
-      <td>oklahoma</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td>Northwest</td>
-      <td>oregon</td>
-    </tr>
-    <tr>
-      <td>19</td>
-      <td>Northwest</td>
-      <td>utah</td>
-    </tr>
-    <tr>
-      <td>20</td>
-      <td>Pacific</td>
-      <td>california</td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td>Pacific</td>
-      <td>arizona</td>
-    </tr>
-    <tr>
-      <td>25</td>
-      <td>Southwest</td>
-      <td>texas</td>
-    </tr>
-    <tr>
-      <td>27</td>
-      <td>Southwest</td>
-      <td>tennessee</td>
-    </tr>
-    <tr>
-      <td>28</td>
-      <td>Southwest</td>
-      <td>louisiana</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>region
+alabama              gray90
+alaska               gray90
+arizona       darkseagreen2
+arkansas             gray90
+california    darkseagreen2
+Name: color, dtype: object</pre>
 </div>
 
 </div>
@@ -13757,6 +13627,7 @@ div#notebook {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">R</span> -i nba_df
 <span class="o">%</span><span class="k">R</span> -i nba_ggplot_color
 <span class="o">%</span><span class="k">R</span> -i nba_ggplot_fill
+<span class="o">%</span><span class="k">R</span> -i location_color
 </pre></div>
 
     </div>
@@ -13774,8 +13645,11 @@ div#notebook {
 <span class="n">canada</span> <span class="o">&lt;-</span> <span class="nf">map_data</span><span class="p">(</span><span class="s">&#39;worldHires&#39;</span><span class="p">,</span> <span class="s">&#39;Canada&#39;</span><span class="p">)</span>
 
 <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-<span class="nf">geom_polygon</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">usa</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">long</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lat</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="p">),</span>
-             <span class="n">fill</span> <span class="o">=</span> <span class="s">&#39;gray90&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">geom_polygon</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">usa</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">long</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lat</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">region</span><span class="p">),</span>
+             <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">location_color</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">guides</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">new_scale</span><span class="p">(</span><span class="s">&#39;fill&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">geom_polygon</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">canada</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">long</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lat</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="p">),</span>
              <span class="n">fill</span> <span class="o">=</span> <span class="s">&#39;grey90&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
 <span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">nba_df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">Player</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Team</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">Team</span><span class="p">),</span>
@@ -13798,7 +13672,7 @@ div#notebook {
       <span class="n">panel.grid</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
       <span class="n">axis.title</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
       <span class="n">legend.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&#39;bold&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">10</span><span class="p">),</span>
-      <span class="n">legend.position</span> <span class="o">=</span> <span class="s">&#39;right&#39;</span><span class="p">,</span>
+      <span class="n">legend.position</span> <span class="o">=</span> <span class="s">&#39;None&#39;</span><span class="p">,</span>
       <span class="n">legend.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&#39;snow2&#39;</span><span class="p">))</span> <span class="o">+</span>
 <span class="nf">guides</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
 

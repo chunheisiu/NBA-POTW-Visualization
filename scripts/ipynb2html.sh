@@ -5,5 +5,4 @@ OUTPUT_PATH=$2
 for f in $FILES_FULL_PATH
 do
   jupyter nbconvert --output-dir=$OUTPUT_PATH $f
-  echo $f
 done
