@@ -13127,6 +13127,14 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Load Data and calculate POTW count for each team</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
@@ -13134,6 +13142,9 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">location</span> <span class="o">=</span> <span class="n">pd2r</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/scraped/NBA_Location.csv&#39;</span><span class="p">))</span>
 <span class="n">nba_Abb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/scraped/NBA_Teams_Abb.csv&#39;</span><span class="p">)</span>
+<span class="n">potw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/NBA_Player_of_the_Week.csv&#39;</span><span class="p">)</span>
+<span class="n">nba_colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/scraped/NBA_Teams_Color.csv&#39;</span><span class="p">)</span>
+<span class="n">potw</span> <span class="o">=</span> <span class="n">potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potw</span><span class="p">[</span><span class="s1">&#39;Season short&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1990</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13285,8 +13296,10 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">potw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/NBA_Player_of_the_Week.csv&#39;</span><span class="p">)</span>
-<span class="n">potw</span> <span class="o">=</span> <span class="n">potw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potw</span><span class="p">[</span><span class="s1">&#39;Season short&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1990</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count how many times each NBA team got POTW in history</span>
+<span class="n">potw_count</span> <span class="o">=</span> <span class="n">potw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;Player&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">potw_count</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potw_count</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Philadelphia Sixers&#39;</span><span class="p">,</span> <span class="s1">&#39;Team&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Philadelphia 76ers&#39;</span>
+<span class="n">location_new</span> <span class="o">=</span> <span class="n">location_w_abb</span><span class="p">[[</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;Abb&#39;</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -13299,23 +13312,121 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">potw_count</span> <span class="o">=</span> <span class="n">potw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;Player&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">location_new</span> <span class="o">=</span> <span class="n">location_w_abb</span><span class="p">[[</span><span class="s1">&#39;Division&#39;</span><span class="p">,</span><span class="s1">&#39;Team&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;Abb&#39;</span><span class="p">]]</span>
-<span class="n">potw_count</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">potw_count</span><span class="o">.</span><span class="n">Team</span> <span class="o">==</span> <span class="s1">&#39;Philadelphia Sixers&#39;</span><span class="p">,</span> <span class="s1">&#39;Team&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Philadelphia 76ers&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># map POTW count to locatin</span>
+<span class="n">loc_potw_ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">location_new</span><span class="p">,</span><span class="n">potw_count</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">loc_potw_ct</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>Abb</th>
+      <th>Player</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Boston Celtics</td>
+      <td>42.366303</td>
+      <td>-71.062228</td>
+      <td>BOS</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Brooklyn Nets</td>
+      <td>41.000000</td>
+      <td>-75.000000</td>
+      <td>BKN</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>New York Knicks</td>
+      <td>40.750556</td>
+      <td>-73.993611</td>
+      <td>NYK</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Philadelphia 76ers</td>
+      <td>39.901111</td>
+      <td>-75.171944</td>
+      <td>PHI</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Toronto Raptors</td>
+      <td>43.643333</td>
+      <td>-79.379167</td>
+      <td>TOR</td>
+      <td>34</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Map Team color to the data</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loc_potw_ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">location_new</span><span class="p">,</span><span class="n">potw_count</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="n">loc_potw_ct</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">loc_potw_ct</span><span class="p">,</span> <span class="n">nba_colors</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s1">&#39;Franchise&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">nba_colors</span> <span class="o">=</span> <span class="n">nba_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">)</span>
+<span class="n">nba_ggplot_fill</span> <span class="o">=</span> <span class="n">nba_colors</span><span class="p">[</span><span class="s1">&#39;Color1&#39;</span><span class="p">]</span>
+<span class="n">nba_ggplot_color</span> <span class="o">=</span> <span class="n">nba_colors</span><span class="p">[</span><span class="s1">&#39;Color2&#39;</span><span class="p">]</span>
+<span class="n">nba_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13351,59 +13462,77 @@ div#notebook {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Division</th>
       <th>Team</th>
       <th>latitude</th>
       <th>longitude</th>
       <th>Abb</th>
       <th>Player</th>
+      <th>Franchise</th>
+      <th>Tm</th>
+      <th>Color1</th>
+      <th>Color2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>0</td>
-      <td>Atlantic</td>
       <td>Boston Celtics</td>
       <td>42.366303</td>
       <td>-71.062228</td>
       <td>BOS</td>
       <td>34</td>
+      <td>Boston Celtics</td>
+      <td>BOS</td>
+      <td>#007A33</td>
+      <td>#BA9653</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>Atlantic</td>
       <td>Brooklyn Nets</td>
       <td>41.000000</td>
       <td>-75.000000</td>
       <td>BKN</td>
       <td>6</td>
+      <td>Brooklyn Nets</td>
+      <td>BKN</td>
+      <td>#000000</td>
+      <td>#000000</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>Atlantic</td>
       <td>New York Knicks</td>
       <td>40.750556</td>
       <td>-73.993611</td>
       <td>NYK</td>
       <td>30</td>
+      <td>New York Knicks</td>
+      <td>NYK</td>
+      <td>#006BB6</td>
+      <td>#F58426</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>Atlantic</td>
       <td>Philadelphia 76ers</td>
       <td>39.901111</td>
       <td>-75.171944</td>
       <td>PHI</td>
       <td>32</td>
+      <td>Philadelphia 76ers</td>
+      <td>PHI</td>
+      <td>#006BB6</td>
+      <td>#ED174C</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Atlantic</td>
       <td>Toronto Raptors</td>
       <td>43.643333</td>
       <td>-79.379167</td>
       <td>TOR</td>
       <td>34</td>
+      <td>Toronto Raptors</td>
+      <td>TOR</td>
+      <td>#CE1141</td>
+      <td>#000000</td>
     </tr>
   </tbody>
 </table>
@@ -13416,29 +13545,23 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Map color to the region for ggplot</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/scraped/NBA_Teams_Color.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nba_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">loc_potw_ct</span><span class="p">,</span> <span class="n">nba_colors</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;Team&#39;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s1">&#39;Franchise&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="n">nba_colors</span> <span class="o">=</span> <span class="n">nba_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Team&#39;</span><span class="p">)</span>
-<span class="n">nba_ggplot_fill</span> <span class="o">=</span> <span class="n">nba_colors</span><span class="p">[</span><span class="s1">&#39;Color1&#39;</span><span class="p">]</span>
-<span class="n">nba_ggplot_color</span> <span class="o">=</span> <span class="n">nba_colors</span><span class="p">[</span><span class="s1">&#39;Color2&#39;</span><span class="p">]</span>
-<span class="n">nba_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import states of USA</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">us</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">STATES</span><span class="p">])</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;State&#39;</span><span class="p">})</span>
+<span class="n">states</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13451,7 +13574,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13474,83 +13597,29 @@ div#notebook {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Division</th>
-      <th>Team</th>
-      <th>latitude</th>
-      <th>longitude</th>
-      <th>Abb</th>
-      <th>Player</th>
-      <th>Franchise</th>
-      <th>Tm</th>
-      <th>Color1</th>
-      <th>Color2</th>
+      <th>State</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>0</td>
-      <td>Atlantic</td>
-      <td>Boston Celtics</td>
-      <td>42.366303</td>
-      <td>-71.062228</td>
-      <td>BOS</td>
-      <td>34</td>
-      <td>Boston Celtics</td>
-      <td>BOS</td>
-      <td>#007A33</td>
-      <td>#BA9653</td>
+      <td>alabama</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>Atlantic</td>
-      <td>Brooklyn Nets</td>
-      <td>41.000000</td>
-      <td>-75.000000</td>
-      <td>BKN</td>
-      <td>6</td>
-      <td>Brooklyn Nets</td>
-      <td>BKN</td>
-      <td>#000000</td>
-      <td>#000000</td>
+      <td>alaska</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>Atlantic</td>
-      <td>New York Knicks</td>
-      <td>40.750556</td>
-      <td>-73.993611</td>
-      <td>NYK</td>
-      <td>30</td>
-      <td>New York Knicks</td>
-      <td>NYK</td>
-      <td>#006BB6</td>
-      <td>#F58426</td>
+      <td>arizona</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>Atlantic</td>
-      <td>Philadelphia 76ers</td>
-      <td>39.901111</td>
-      <td>-75.171944</td>
-      <td>PHI</td>
-      <td>32</td>
-      <td>Philadelphia 76ers</td>
-      <td>PHI</td>
-      <td>#006BB6</td>
-      <td>#ED174C</td>
+      <td>arkansas</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Atlantic</td>
-      <td>Toronto Raptors</td>
-      <td>43.643333</td>
-      <td>-79.379167</td>
-      <td>TOR</td>
-      <td>34</td>
-      <td>Toronto Raptors</td>
-      <td>TOR</td>
-      <td>#CE1141</td>
-      <td>#000000</td>
+      <td>california</td>
     </tr>
   </tbody>
 </table>
@@ -13565,26 +13634,37 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">us</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">STATES</span><span class="p">])</span>
-<span class="n">states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;State&#39;</span><span class="p">})</span>
-<span class="n">states</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the state for each team</span>
 <span class="n">region</span> <span class="o">=</span> <span class="n">location_w_abb</span><span class="o">.</span><span class="n">copy</span><span class="p">()[[</span><span class="s1">&#39;Division&#39;</span><span class="p">,</span> <span class="s1">&#39;City, State&#39;</span><span class="p">]]</span>
 <span class="n">region</span><span class="p">[</span><span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">region</span><span class="p">[</span><span class="s1">&#39;City, State&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 <span class="n">region</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">region</span><span class="o">.</span><span class="n">State</span> <span class="o">==</span> <span class="s1">&#39;d.c.&#39;</span><span class="p">,</span> <span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;district of columbia&#39;</span>
 <span class="n">region</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;City, State&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-<span class="c1">#TODO: Assign color to each division and Join with states and fill na with gray</span>
-<span class="n">location</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">states</span><span class="p">,</span><span class="n">region</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;No_NBA&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Merge two table</span>
+<span class="n">TM_location</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">states</span><span class="p">,</span><span class="n">region</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;No_NBA&#39;</span><span class="p">)</span>
+<span class="c1"># Map color to each state</span>
 <span class="n">color_dic</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">color_lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gray90&quot;</span><span class="p">,</span><span class="s2">&quot;darkseagreen2&quot;</span><span class="p">,</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span><span class="s2">&quot;lightpink&quot;</span><span class="p">,</span><span class="s2">&quot;thistle2&quot;</span><span class="p">,</span><span class="s2">&quot;wheat&quot;</span><span class="p">,</span><span class="s2">&quot;tan1&quot;</span><span class="p">]</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">location</span><span class="o">.</span><span class="n">Division</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">TM_location</span><span class="o">.</span><span class="n">Division</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
     <span class="n">color_dic</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
-<span class="n">location</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">location</span><span class="p">[</span><span class="s1">&#39;Division&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">color_dic</span><span class="p">)</span>
-<span class="n">location_color</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;State&#39;</span><span class="p">:</span> <span class="s1">&#39;region&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+<span class="n">TM_location</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TM_location</span><span class="p">[</span><span class="s1">&#39;Division&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">color_dic</span><span class="p">)</span>
+<span class="n">location_color</span> <span class="o">=</span> <span class="n">TM_location</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;State&#39;</span><span class="p">:</span> <span class="s1">&#39;region&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
 <span class="n">location_color</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -13618,6 +13698,14 @@ Name: color, dtype: object</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Visualization in R</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
