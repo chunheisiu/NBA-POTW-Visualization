@@ -40,16 +40,16 @@ https://teamcolorcodes.com/nba-team-color-codes/
 
 ### Visualizations
 - Visualization 1: Relationship between NBA Player of the Week and Player Statistics<br><br>
-![Screenshot](vis/vis1.png)
+![Visualization 1](vis/vis1.png)
 
 - Visualization 2: Relationship between NBA Player of the Week and Player Salary<br><br>
-![Screenshot](vis/vis2.png)
+![Visualization 2](vis/vis2.png)
 
 - Visualization 3: Relationship between NBA Player of the Week and Champion Team<br><br>
-![Screenshot](vis/vis3.png)
+![Visualization 3](vis/vis3.png)
 
 - Visualization 4: Relationship between NBA Player of the Week and Other Awards/Honors<br><br>
-![Screenshot](vis/vis4.png)
+![Visualization 4](vis/vis4.png)
 
 - Visualization 5: Relationship between NBA Player of the Week and Team Location<br><br>
-![Screenshot](vis/vis5.png)
+![Visualization 5](vis/vis5.png)
